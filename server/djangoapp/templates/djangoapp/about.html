@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
 
 <head>
     {% load static %}
-    <meta charset="UTF-8">
-    <title>Dealership Reviews</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Us</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -17,13 +24,13 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <!-- Remove this line the first time you edit this file -->
-    <!-- This is the index page of your Django app! -->
-    <!--Add a nav bar here -->
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand text-warning" href="#">Super Cars</a>
+                <a class="navbar-brand text-warning" href="{% url 'djangoapp:index' %}">Super Cars</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,18 +39,25 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <!-- <a class="nav-item nav-link active" href="#">Home</a> -->
-                    <a class="nav-item nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
+                    <a class="nav-item nav-link active" href="#">About Us</a>
                     <a class="nav-item nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
-
-
-    <!--Add a dealer table here -->
-
-
-
+    <div class="container my-4">
+        <div class="jumbotron">
+            <h1 class="display-4">About Us</h1>
+            <p class="lead">America's best cars are here!</p>
+            <hr class="my-4">
+            <h2>
+                Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported
+                cars
+                at reasonable prices.
+            </h2>
+            <a class="btn btn-warning btn-lg" href="{% url 'djangoapp:index' %}" role="button">See Dealerships</a>
+        </div>
+    </div>
     <footer class="mt-auto">
         <!-- <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);"> -->
         <div class="text-center p-2 navbar-dark bg-dark">
@@ -51,6 +65,7 @@
             <a class="fw-bold text-warning" href="{% url 'djangoapp:index' %}">SuperCars</a>
         </div>
     </footer>
+    <script src="" async defer></script>
 </body>
 
 </html>
