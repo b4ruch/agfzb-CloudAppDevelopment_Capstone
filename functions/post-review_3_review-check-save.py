@@ -9,5 +9,13 @@
 #
 import sys
 
+
 def main(dict):
-    return { 'message': 'Hello world' }
+
+    if dict["ok"] is not True:
+        result = {"error": {"status": 500,
+                            "msg": "Something went wrong on the server"}}
+    else:
+        result = {"result": dict}
+
+    return result
