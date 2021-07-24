@@ -31,6 +31,7 @@ function main(params) {
     return {
         entries: params.docs.map(doc => {
             return {
+                id: doc.id,
                 city: doc.city,
                 state: doc.state,
                 st: doc.st,
