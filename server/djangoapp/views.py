@@ -112,10 +112,15 @@ def get_dealerships(request):
         else:
             dealerships = get_dealers_from_cf(url)
         if "msg" not in dealerships:
-            # Concat all dealerships short name
-            dealer_names = " ".join([dealer.short_name for dealer in dealerships])
-            # Return a list of dealer short_name
-            return HttpResponse(dealer_names)
+            #1st Phase Development
+                # # Concat all dealerships short name
+                # dealer_names = " ".join([dealer.short_name for dealer in dealerships])
+                # # Return a list of dealer short_name
+                # return HttpResponse(dealer_names)
+            
+            #2nd Phase Development
+            context = dealerships
+            return render(request, 'djangoapp/index.html', context)
         else:
             # Return response error
             return HttpResponse(str(dealerships))
