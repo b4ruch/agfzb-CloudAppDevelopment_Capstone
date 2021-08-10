@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Dealership Reviews</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'table.css' %}"/>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -35,7 +36,8 @@
                     <a class="nav-item nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
                     <a class="nav-item nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>
                     {% if user.is_authenticated %}
-                    <a class="btn btn-link text-warning disabled" href="#">{{ user.first_name }}({{ user.username }})</a>
+                    <a class="btn btn-link text-warning disabled" href="#">{{ user.first_name }}({{ user.username
+                        }})</a>
                     <a class="btn btn-link text-warning" href="{% url 'djangoapp:logout' %}">Logout</a>
 
                     {% else %}
@@ -55,8 +57,38 @@
     </nav>
 
 
-    <!--Add a dealer table here -->
+    <!-- Code to debug the context variable -->
+    <!-- <textarea onclick="this.focus();this.select()" style="width: 100%;"> {% filter force_escape %} {% debug %} {% endfilter %}</textarea> -->
 
+    <!--Add a dealer table here -->
+    {% if dealerships %}
+    <div class="container">
+        <table class="table table-secondary table-bordered table-hover" id="table" data-filter-control="true">
+            <thead>
+                <tr>
+                    <th scope="col"> ID </th>
+                    <th scope="col"> Dealer name </th>
+                    <th scope="col"> City </th>
+                    <th scope="col"> Address </th>
+                    <th scope="col"> Zip </th>
+                    <th scope="col" data-field="state" data-filter-control="select"II> State </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dealer in dealerships %}
+                <tr>
+                    <th scope="row">{{dealer.id}}</th>
+                    <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.full_name}}</a></td>
+                    <td> {{dealer.city}}</td>
+                    <td> {{dealer.address}}</td>
+                    <td> {{dealer.zip}}</td>
+                    <td> {{dealer.st}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
 
 
     <footer class="mt-auto">
@@ -66,6 +98,13 @@
             <a class="fw-bold text-warning" href="{% url 'djangoapp:index' %}">SuperCars</a>
         </div>
     </footer>
+
+    <!-- Turns on filter control for the table element -->
+    <script>
+        $(function () {
+            $('#table').bootstrapTable()
+        })
+    </script>
 </body>
 
 </html>

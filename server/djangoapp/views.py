@@ -118,8 +118,8 @@ def get_dealerships(request):
                 # # Return a list of dealer short_name
                 # return HttpResponse(dealer_names)
             
-            #2nd Phase Development.
-            context = dealerships
+            #2nd Phase Development
+            context["dealerships"] = dealerships
             return render(request, 'djangoapp/index.html', context)
         else:
             # Return response error
